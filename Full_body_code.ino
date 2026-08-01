@@ -17,13 +17,30 @@ void setup() {
   leftFoot.attach(6);
   rightFoot.attach(7);
 
+  // Initialize head servo (defined in Left_Hand_Head_Movement.ino)
+  setupHead();
+
   standPosition();
 }
 
 void loop() {
-  waveHand();
+  // Wave right hand (defined in Right_Hand_Movement.ino)
+  waveRightHand();
   delay(2000);
 
+  // Raise right arm (defined in Right_Hand_Movement.ino)
+  raiseRightArm();
+  delay(2000);
+
+  // Wave left hand (defined in Left_Hand_Head_Movement.ino)
+  waveLeftHand();
+  delay(2000);
+
+  // Move head (defined in Left_Hand_Head_Movement.ino)
+  moveHead();
+  delay(2000);
+
+  // Walk forward (defined in this file)
   walkForward();
   delay(2000);
 }
@@ -36,16 +53,6 @@ void standPosition() {
   rightLeg.write(90);
   leftFoot.write(90);
   rightFoot.write(90);
-}
-
-void waveHand() {
-  for(int i = 0; i < 3; i++) {
-    rightArm.write(60);
-    delay(500);
-    rightArm.write(120);
-    delay(500);
-  }
-  rightArm.write(90);
 }
 
 void walkForward() {
